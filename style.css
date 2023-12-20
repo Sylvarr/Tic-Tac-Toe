@@ -1,0 +1,15 @@
+.matrix {
+  width: 200px;
+}
+
+.col {
+  height: 70px;
+}
+
+.announcement {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
