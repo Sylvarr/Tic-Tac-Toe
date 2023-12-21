@@ -1,8 +1,14 @@
 function gameMatrix() {
   let array = [
-    [, ,],
-    [, ,],
-    [, ,],
+    undefined,
+    undefined,
+    undefined,
+    undefined,
+    undefined,
+    undefined,
+    undefined,
+    undefined,
+    undefined,
   ];
 
   function resetGame() {
@@ -17,51 +23,51 @@ function gameMatrix() {
 
   function checkWinner() {
     if (
-      array[0][0] !== undefined &&
-      array[0][0] === array[0][1] &&
-      array[0][1] === array[0][2]
+      array[0] !== undefined &&
+      array[0] === array[1] &&
+      array[1] === array[2]
     ) {
       announcement.classList.add("visible");
     } else if (
-      array[1][0] !== undefined &&
-      array[1][0] === array[1][1] &&
-      array[1][1] === array[1][2]
+      array[3] !== undefined &&
+      array[3] === array[4] &&
+      array[4] === array[5]
     ) {
       announcement.classList.add("visible");
     } else if (
-      array[2][0] !== undefined &&
-      array[2][0] === array[2][1] &&
-      array[2][1] === array[2][2]
+      array[6] !== undefined &&
+      array[6] === array[7] &&
+      array[7] === array[8]
     ) {
       announcement.classList.add("visible");
     } else if (
-      array[0][0] !== undefined &&
-      array[0][0] === array[1][0] &&
-      array[1][0] === array[2][0]
+      array[0] !== undefined &&
+      array[0] === array[3] &&
+      array[3] === array[6]
     ) {
       announcement.classList.add("visible");
     } else if (
-      array[0][1] !== undefined &&
-      array[0][1] === array[1][1] &&
-      array[1][1] === array[2][1]
+      array[1] !== undefined &&
+      array[1] === array[4] &&
+      array[4] === array[7]
     ) {
       announcement.classList.add("visible");
     } else if (
-      array[0][2] !== undefined &&
-      array[0][2] === array[1][2] &&
-      array[1][2] === array[2][2]
+      array[2] !== undefined &&
+      array[2] === array[5] &&
+      array[5] === array[8]
     ) {
       announcement.classList.add("visible");
     } else if (
-      array[0][0] !== undefined &&
-      array[0][0] === array[1][1] &&
-      array[1][1] === array[2][2]
+      array[0] !== undefined &&
+      array[0] === array[4] &&
+      array[4] === array[8]
     ) {
       announcement.classList.add("visible");
     } else if (
-      array[0][2] !== undefined &&
-      array[0][2] === array[1][1] &&
-      array[1][1] === array[2][0]
+      array[2] !== undefined &&
+      array[2] === array[4] &&
+      array[4] === array[6]
     ) {
       announcement.classList.add("visible");
     } else {
@@ -70,105 +76,23 @@ function gameMatrix() {
   }
 
   checkWinner();
+  let isPlayerTurn = true;
+
+  function onClickButton(e) {
+    let button = e.target;
+    if (button.innerHTML !== "") return;
+    let symbol = isPlayerTurn ? "X" : "O";
+    array[button.value] = button.innerHTML = symbol;
+    isPlayerTurn = !isPlayerTurn;
+    checkWinner();
+  }
 
   function gridButtons() {
-    let one = document.getElementById("1");
-    let two = document.getElementById("2");
-    let three = document.getElementById("3");
-    let four = document.getElementById("4");
-    let five = document.getElementById("5");
-    let six = document.getElementById("6");
-    let seven = document.getElementById("7");
-    let eight = document.getElementById("8");
-    let nine = document.getElementById("9");
+    const buttons = document.querySelectorAll("button");
 
-    let isPlayerTurn = true;
-
-    one.addEventListener("click", () => {
-      if (one.innerHTML !== "") return;
-
-      let symbol = isPlayerTurn ? "X" : "O";
-      one.innerHTML = symbol;
-      array[0][0] = symbol;
-      isPlayerTurn = !isPlayerTurn;
-      checkWinner();
+    buttons.forEach((button) => {
+      button.addEventListener("click", onClickButton);
     });
-
-    two.addEventListener("click", () => {
-      if (two.innerHTML !== "") return;
-
-      let symbol = isPlayerTurn ? "X" : "O";
-      two.innerHTML = symbol;
-      array[0][1] = symbol;
-      isPlayerTurn = !isPlayerTurn;
-      checkWinner();
-    });
-
-    three.addEventListener("click", () => {
-      if (three.innerHTML !== "") return;
-
-      let symbol = isPlayerTurn ? "X" : "O";
-      three.innerHTML = symbol;
-      array[0][2] = symbol;
-      isPlayerTurn = !isPlayerTurn;
-      checkWinner();
-    });
-
-    four.addEventListener("click", () => {
-      if (four.innerHTML !== "") return;
-      let symbol = isPlayerTurn ? "X" : "O";
-      four.innerHTML = symbol;
-      array[1][0] = symbol;
-      isPlayerTurn = !isPlayerTurn;
-      checkWinner();
-    });
-
-    five.addEventListener("click", () => {
-      if (five.innerHTML !== "") return;
-      let symbol = isPlayerTurn ? "X" : "O";
-      five.innerHTML = symbol;
-      array[1][1] = symbol;
-      isPlayerTurn = !isPlayerTurn;
-      checkWinner();
-    });
-
-    six.addEventListener("click", () => {
-      if (six.innerHTML !== "") return;
-      let symbol = isPlayerTurn ? "X" : "O";
-      six.innerHTML = symbol;
-      array[1][2] = symbol;
-      isPlayerTurn = !isPlayerTurn;
-      checkWinner();
-    });
-
-    seven.addEventListener("click", () => {
-      if (seven.innerHTML !== "") return;
-      let symbol = isPlayerTurn ? "X" : "O";
-      seven.innerHTML = symbol;
-      array[2][0] = symbol;
-      isPlayerTurn = !isPlayerTurn;
-      checkWinner();
-    });
-
-    eight.addEventListener("click", () => {
-      if (eight.innerHTML !== "") return;
-      let symbol = isPlayerTurn ? "X" : "O";
-      eight.innerHTML = symbol;
-      array[2][1] = symbol;
-      isPlayerTurn = !isPlayerTurn;
-      checkWinner();
-    });
-
-    nine.addEventListener("click", () => {
-      if (nine.innerHTML !== "") return;
-      let symbol = isPlayerTurn ? "X" : "O";
-      nine.innerHTML = symbol;
-      array[2][2] = symbol;
-      isPlayerTurn = !isPlayerTurn;
-      checkWinner();
-    });
-
-    return array;
   }
 
   gridButtons();
