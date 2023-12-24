@@ -1,6 +1,37 @@
+@import url("https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;700&family=Rubik+Doodle+Shadow&family=Signika+Negative:wght@300;400;500&display=swap");
+
+/* font-family: 'Bitter', serif;
+font-family: 'Signika Negative', sans-serif; */
+
 .matrix {
   display: none;
   width: 200px;
+  box-shadow: 10px 11px 12px -8px rgba(0, 0, 0, 0.51);
+}
+
+body {
+  background-color: #eee7da;
+}
+
+.navigation {
+  background-color: #afc8ad !important;
+}
+
+.navbar-brand {
+  color: #f2f1eb;
+  user-select: none;
+}
+
+.navbar-brand:hover {
+  color: #f2f1eb;
+}
+
+.nav-link {
+  color: #f2f1eb;
+}
+
+.nav-link:hover {
+  color: #f2f1eb;
 }
 
 .col {
@@ -8,9 +39,32 @@
 }
 
 .announcement {
-  display: none;
+  margin-top: 20px;
+  color: #88ab8e;
+  font-size: 2rem;
 }
 
 .visible {
   display: block;
+}
+
+.game-name {
+  font-family: "Bitter", serif;
+  font-weight: 600;
+}
+
+.navbar-toggler-icon {
+  background-image: url("./images/menu.png");
+}
+
+.navbar-toggler.collapsed .navbar-toggler-icon {
+  background-image: url("./images/menu.png");
+}
+
+.tic-tac-toe-button {
+  background-color: #eee7da;
+  border: 3px solid #afc8ad;
+  color: #88ab8e;
+  font-family: "Rubic Doodle Shadow";
+  font-size: 2rem;
 }

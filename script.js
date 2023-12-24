@@ -107,7 +107,7 @@ function gameMatrix() {
   }
 
   function gridButtons() {
-    const buttons = document.querySelectorAll("button");
+    const buttons = document.querySelectorAll(".tic-tac-toe-button");
 
     buttons.forEach((button) => {
       button.addEventListener("click", onClickButton);

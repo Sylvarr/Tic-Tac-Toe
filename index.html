@@ -15,36 +15,44 @@
 </head>
 
 <body>
-  <nav class="navbar bg-body-tertiary row ">
-    <form class="container-fluid justify-content-start col mx-3">
-      <button class="btn btn-outline-success me-2 play" type="button">Play Game</button>
-      <button class="btn btn-sm btn-outline-secondary reset" type="button">Reset Game</button>
-    </form>
-    <div class="container col justify-content-end mx-3 mt-2">
-      <p class="fs-3 fw-semibold">Tic-Tac-Toe</p>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light navigation">
+    <a class="navbar-brand fs-4 ms-3 game-name" href="#">Tic Tac Toe</a>
+    <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link ms-3 play" href="#">Play Game</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link ms-3 reset" href="#">Reset Game</a>
+        </li>
     </div>
   </nav>
 
   <div class="container mt-5 matrix">
     <div class="row">
-      <button class="col" id="1" value="0"></button>
-      <button class="col" id="2" value="1"></button>
-      <button class="col" id="3" value="2"></button>
+      <button class="col tic-tac-toe-button" id="1" value="0"></button>
+      <button class="col tic-tac-toe-button" id="2" value="1"></button>
+      <button class="col tic-tac-toe-button" id="3" value="2"></button>
     </div>
     <div class="row">
-      <button class="col" id="4" value="3"></button>
-      <button class="col" id="5" value="4"></button>
-      <button class="col" id="6" value="5"></button>
+      <button class="col tic-tac-toe-button" id="4" value="3"></button>
+      <button class="col tic-tac-toe-button" id="5" value="4"></button>
+      <button class="col tic-tac-toe-button" id="6" value="5"></button>
     </div>
     <div class="row">
-      <button class="col" id="7" value="6"></button>
-      <button class="col" id="8" value="7"></button>
-      <button class="col" id="9" value="8"></button>
+      <button class="col tic-tac-toe-button" id="7" value="6"></button>
+      <button class="col tic-tac-toe-button" id="8" value="7"></button>
+      <button class="col tic-tac-toe-button" id="9" value="8"></button>
     </div>
   </div>
 
   <div class="container text-center">
-    <p class="announcement">You're the winner</p>
+    <p class="announcement"></p>
   </div>
 </body>
 
