@@ -112,7 +112,10 @@ function gameMatrix() {
     if (announcement.classList.contains("visible")) return;
     if (computer === true) {
       array[button.value] = button.textContent = "X";
-      setTimeout(computerPlays, 1000);
+      checkWinner();
+      if (!announcement.classList.contains("visible")) {
+        setTimeout(computerPlays, 500);
+      }
       checkWinner();
     } else {
       let symbol = isPlayerTurn ? "X" : "O";
