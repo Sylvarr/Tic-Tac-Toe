@@ -1,5 +1,22 @@
+/**
+ * Manages the tic-tac-toe game, handles game logic, user interactions, and determines the winner.
+ *
+ * Example Usage:
+ * gameMatrix();
+ *
+ * Inputs: None
+ *
+ * Flow:
+ * 1. Calls the startGame function to set up the initial game state and event listeners for user interactions.
+ * 2. Calls the resetGame function to add an event listener to the reset button, allowing the game to be restarted.
+ * 3. Calls the checkWinner function to check if there is a winner or a tie after each move.
+ * 4. Calls the onClickButton function when a button on the game grid is clicked. It handles the logic for player moves and, if playing against the computer, triggers the computer's move.
+ * 5. Calls the gridButtons function to add event listeners to all the buttons on the game grid.
+ *
+ * Outputs: None. The function manages the game logic and user interactions.
+ */
 function gameMatrix() {
-  let array = [null, null, null, null, null, null, null, null, null];
+  let gameState = [null, null, null, null, null, null, null, null, null];
   let computer = false;
   let isPlayerTurn = true;
 
@@ -40,63 +57,33 @@ function gameMatrix() {
   let announcement = document.querySelector(".announcement");
 
   function checkWinner() {
-    if (array[0] !== null && array[0] === array[1] && array[1] === array[2]) {
-      announcement.classList.add("visible");
-      announcement.textContent = `${array[0]} is the winner!`;
-    } else if (
-      array[3] !== null &&
-      array[3] === array[4] &&
-      array[4] === array[5]
-    ) {
-      announcement.classList.add("visible");
-      announcement.textContent = `${array[3]} is the winner!`;
-    } else if (
-      array[6] !== null &&
-      array[6] === array[7] &&
-      array[7] === array[8]
-    ) {
-      announcement.classList.add("visible");
-      announcement.textContent = `${array[6]} is the winner!`;
-    } else if (
-      array[0] !== null &&
-      array[0] === array[3] &&
-      array[3] === array[6]
-    ) {
-      announcement.classList.add("visible");
-      announcement.textContent = `${array[0]} is the winner!`;
-    } else if (
-      array[1] !== null &&
-      array[1] === array[4] &&
-      array[4] === array[7]
-    ) {
-      announcement.classList.add("visible");
-      announcement.textContent = `${array[1]} is the winner!`;
-    } else if (
-      array[2] !== null &&
-      array[2] === array[5] &&
-      array[5] === array[8]
-    ) {
-      announcement.classList.add("visible");
-      announcement.textContent = `${array[2]} is the winner!`;
-    } else if (
-      array[0] !== null &&
-      array[0] === array[4] &&
-      array[4] === array[8]
-    ) {
-      announcement.classList.add("visible");
-      announcement.textContent = `${array[0]} is the winner!`;
-    } else if (
-      array[2] !== null &&
-      array[2] === array[4] &&
-      array[4] === array[6]
-    ) {
-      announcement.classList.add("visible");
-      announcement.textContent = `${array[2]} is the winner!`;
-    } else if (array.every((value) => value !== null)) {
+    const winningCombinations = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+
+    for (const combination of winningCombinations) {
+      const [a, b, c] = combination;
+      if (
+        gameState[a] !== null &&
+        gameState[a] === gameState[b] &&
+        gameState[b] === gameState[c]
+      ) {
+        announcement.classList.add("visible");
+        announcement.textContent = `${gameState[a]} is the winner!`;
+        return;
+      }
+    }
+
+    if (gameState.every((value) => value !== null)) {
       announcement.classList.add("visible");
       announcement.textContent = `It's a tie!`;
-    } else {
-      return;
     }
   }
 
@@ -106,7 +93,7 @@ function gameMatrix() {
     if (announcement.classList.contains("visible")) return;
     if (computer === true) {
       if (isPlayerTurn === true) {
-        array[button.value] = button.textContent = "X";
+        gameState[button.value] = button.textContent = "X";
         checkWinner();
         isPlayerTurn = !isPlayerTurn;
         if (!announcement.classList.contains("visible")) {
@@ -115,7 +102,7 @@ function gameMatrix() {
       }
     } else {
       let symbol = isPlayerTurn ? "X" : "O";
-      array[button.value] = button.textContent = symbol;
+      gameState[button.value] = button.textContent = symbol;
       isPlayerTurn = !isPlayerTurn;
       checkWinner();
     }
@@ -124,9 +111,9 @@ function gameMatrix() {
       let random;
       do {
         random = Math.floor(Math.random() * 9);
-      } while (array[random] !== null);
+      } while (gameState[random] !== null);
       const button = document.querySelectorAll(".tic-tac-toe-button");
-      array[random] = button[random].textContent = "O";
+      gameState[random] = button[random].textContent = "O";
       checkWinner();
       isPlayerTurn = !isPlayerTurn;
     }
