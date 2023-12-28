@@ -30,15 +30,12 @@ function gameMatrix() {
     });
   }
 
-  startGame();
-
   function resetGame() {
     let reset = document.querySelector(".reset");
     reset.addEventListener("click", () => {
       location.reload();
     });
   }
-  resetGame();
 
   let announcement = document.querySelector(".announcement");
 
@@ -103,17 +100,15 @@ function gameMatrix() {
     }
   }
 
-  checkWinner();
-  let playerTurn = true;
   function onClickButton(e) {
     let button = e.target;
     if (button.textContent !== "") return;
     if (announcement.classList.contains("visible")) return;
     if (computer === true) {
-      if (playerTurn === true) {
+      if (isPlayerTurn === true) {
         array[button.value] = button.textContent = "X";
         checkWinner();
-        playerTurn = !playerTurn;
+        isPlayerTurn = !isPlayerTurn;
         if (!announcement.classList.contains("visible")) {
           setTimeout(computerPlays, 500);
         }
@@ -133,7 +128,7 @@ function gameMatrix() {
       const button = document.querySelectorAll(".tic-tac-toe-button");
       array[random] = button[random].textContent = "O";
       checkWinner();
-      playerTurn = true;
+      isPlayerTurn = !isPlayerTurn;
     }
   }
 
@@ -144,6 +139,9 @@ function gameMatrix() {
     });
   }
 
+  startGame();
+  resetGame();
+  checkWinner();
   gridButtons();
 }
 
