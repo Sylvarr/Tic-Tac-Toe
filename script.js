@@ -1,6 +1,7 @@
 function gameMatrix() {
   let array = [null, null, null, null, null, null, null, null, null];
   let computer = false;
+  let isPlayerTurn = true;
 
   function startGame() {
     let playButton = document.querySelector(".play");
@@ -103,20 +104,20 @@ function gameMatrix() {
   }
 
   checkWinner();
-  let isPlayerTurn = true;
-
+  let playerTurn = true;
   function onClickButton(e) {
     let button = e.target;
-
     if (button.textContent !== "") return;
     if (announcement.classList.contains("visible")) return;
     if (computer === true) {
-      array[button.value] = button.textContent = "X";
-      checkWinner();
-      if (!announcement.classList.contains("visible")) {
-        setTimeout(computerPlays, 500);
+      if (playerTurn === true) {
+        array[button.value] = button.textContent = "X";
+        checkWinner();
+        playerTurn = !playerTurn;
+        if (!announcement.classList.contains("visible")) {
+          setTimeout(computerPlays, 500);
+        }
       }
-      checkWinner();
     } else {
       let symbol = isPlayerTurn ? "X" : "O";
       array[button.value] = button.textContent = symbol;
@@ -132,6 +133,7 @@ function gameMatrix() {
       const button = document.querySelectorAll(".tic-tac-toe-button");
       array[random] = button[random].textContent = "O";
       checkWinner();
+      playerTurn = true;
     }
   }
 
